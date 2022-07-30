@@ -1,0 +1,55 @@
+.auth__container--register {
+    margin-top: 160px;
+    margin-bottom: 130px;
+}
+
+.register__text {
+    width: 80%;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #8E8E8E;
+}
+
+.register__with--facebook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0095F6;
+    color: #FFF;
+    line-height: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    width: 80%;
+    border-radius: 4px;
+    gap: 10px;
+
+    .rfb__icon {
+        font-size: 25px;
+    }
+}
+
+.register__top-text {
+    width: 80%;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #8E8E8E;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.register__bottom-text {
+    width: 80%;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #8E8E8E;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

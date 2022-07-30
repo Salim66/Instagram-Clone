@@ -1,0 +1,151 @@
+.login__container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+
+    .login__wrapper {
+        width: 350px;
+        background-color: #FFFFFF;
+        border: 2px solid #e9e9e9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0px 20px;
+
+        .login__logo {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            margin-bottom: 25px;
+        }
+
+        .login__form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+
+            .login__input {
+                width: 100%;
+                line-height: 40px;
+                margin-bottom: 10px;
+                border: 2px solid #dfdddd;
+                border-radius: 4px;
+                background-color: #FAFAFA;
+                padding: 0px 10px;
+
+                &:focus {
+                    outline: none;
+                    border: 2px solid #b9b6b6;
+                }
+            }
+        }
+
+        .login__button {
+            margin-top: 8px;
+            width: 80%;
+            line-height: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #B2DFFC;
+            color: #FFF;
+        }
+
+        .divider {
+            margin-top: 20px;
+            margin-bottom: 25px;
+            color: #958E95;
+            position: relative;
+            width: 80%;
+            text-align: center;
+
+            &::before {
+                content: '';
+                display: block;
+                clear: both;
+                position: absolute;
+                width: 40%;
+                height: 1px;
+                background-color: #DBDBDB;
+                left: 0px;
+                top: 8px;
+            }
+
+            &::after {
+                content: '';
+                display: block;
+                clear: both;
+                position: absolute;
+                width: 40%;
+                height: 1px;
+                background-color: #DBDBDB;
+                right: 0px;
+                top: 8px;
+            }
+        }
+
+        .login__with-facebook {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #385185;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+
+            .fb-icon {
+                font-size: 26px;
+            }
+        }
+
+        .forgot__password {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            color: gray;
+        }
+
+    }
+
+    .login__wrapper--signup {
+        padding: 25px 0px 25px;
+        font-size: 16px;
+
+        .signup__link {
+            font-weight: 500;
+            text-decoration: none;
+            color: #5AC6FB;
+        }
+    }
+
+    .login__wrapper--appstore {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        .app__text {
+            margin-top: 10px;
+        }
+
+        .app__alllink {
+            display: flex;
+            gap: 10px;
+
+            .app__link {
+
+
+                .app__image {
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
+

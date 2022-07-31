@@ -30,6 +30,7 @@
             align-items: center;
             width: 80%;
 
+
             .login__input {
                 width: 100%;
                 line-height: 40px;
@@ -38,12 +39,27 @@
                 border-radius: 4px;
                 background-color: #FAFAFA;
                 padding: 0px 10px;
+                
 
                 &:focus {
                     outline: none;
                     border: 2px solid #b9b6b6;
                 }
+
+                &::placeholder {
+                    transition: all 0.3s;
+                }
+
+                &:focus::placeholder  {
+                    display: block;
+                    opacity: 1;
+                    visibility: visible;
+                    font-size: 12px;
+                    transform: translateY(-12px);
+                }
             }
+
+            
         }
 
         .login__button {

@@ -12,8 +12,10 @@ const Login = () => {
           <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="" className="login__logo" />
         </a>
         <form action="#" className="login__form">
-          <input type="text" className="login__input" placeholder='Phone number, username, or email' />
-          <input type="password" className="login__input" placeholder='Password' />
+
+            <input type="text" className="login__input" placeholder='Phone number, username, or email' />
+            <input type="password" className="login__input" placeholder='Password' />
+     
         </form>
         <button className="login__button">Log In</button>
         <div className="divider">

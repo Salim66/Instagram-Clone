@@ -19,6 +19,11 @@ const FooterAuth = () => {
                 <li className="footer__list"><a href="#" className="footer_link">Locations</a></li>
                 <li className="footer__list"><a href="#" className="footer_link">Instagram Lite</a></li>
                 <li className="footer__list"><a href="#" className="footer_link">Contact Uploading & Non-Users</a></li>
+                <li className="footer__list"><a href="#" className="footer_link">Dance</a></li>
+                <li className="footer__list"><a href="#" className="footer_link">Food & Drink</a></li>
+                <li className="footer__list"><a href="#" className="footer_link">Home & Garden</a></li>
+                <li className="footer__list"><a href="#" className="footer_link">Music</a></li>
+                <li className="footer__list"><a href="#" className="footer_link">Visual Arts</a></li>
             </ul>
         </div>
         <div className="footer__bottom">

@@ -1,8 +1,13 @@
 import React from 'react';
+import NotLogin from '../NotLogin/NotLogin';
 
 const Home = () => {
+
+
   return (
-    <div>Home</div>
+    <>
+      <NotLogin/>
+    </>
   )
 };
 

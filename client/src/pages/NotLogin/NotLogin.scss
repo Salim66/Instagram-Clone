@@ -1,0 +1,18 @@
+.not-login__wrapper {
+    display: flex;
+ 
+
+    .no-login__image {
+        position: relative;
+    }
+
+    .no-login__slider-image {
+        position: absolute;
+        top: 28px;
+        left: 157px;
+    }
+
+    .wrapper {
+        margin-top: 20px;
+    }
+}

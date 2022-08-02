@@ -1,0 +1,120 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    line-height: 74px;
+    align-items: center;
+    background-color: #FFF;
+    border-bottom: 1px solid rgb(219 211 211);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    .header__wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 1200px;
+
+        .header__left {
+            width: 33.33%;
+            display: flex;
+            justify-content: flex-start;
+    
+            .header__logo {
+                width: 126px;
+                height: 37px;
+                object-fit: cover;
+            }
+        }
+    
+        .header__middle {
+            width: 33.33%;
+            display: flex;
+            justify-content: center;
+    
+    
+            .search__form {
+                display: flex;
+                width: 340px;
+                position: relative;
+    
+                input {
+                    width: 100%;
+                    line-height: 40px;
+                    background-color: #EFEFEF;
+                    border: none;
+                    padding: 2px 20px;
+                    border-radius: 8px;
+                   
+                    &:focus {
+                        outline: none;
+                    }
+                   
+                    &::placeholder {
+                        color: #8E8E8E;
+                        font-weight: 200;
+                        font-size: 19px;
+                        transform: translate(40px, 15%);
+                        transition: all 0.3s;
+                    }
+    
+                    &:focus::placeholder {
+                        margin-left: -40px;
+                        transform: translate(0px, 0%);
+                    }
+    
+                    
+                }
+    
+                .search__icon {
+                    position: absolute;
+                    top: 10px;
+                    left: 20px;
+                    font-size: 23px;
+                    font-weight: 200;
+                    color: #8E8E8E;
+                }
+            }
+        }
+    
+        .header__right {
+            width: 33.33%;
+    
+            .nav__ul {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 25px;
+                margin-bottom: 0px;
+    
+                .nav__li {
+    
+    
+                    .nav__link {
+    
+                        
+                    }
+    
+                }
+            }
+        }
+
+    }
+
+   
+}
+
+
+
+.profile__link--image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nav__link svg {
+    width: 30px;
+    height: 30px;
+}

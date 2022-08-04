@@ -65,6 +65,11 @@ const Home = () => {
                     </div>
                     <div className="body__bottom--bottom">
                       <a href="#" className="bbb__like--link">98,825 likes</a>
+                      <div className="body__text-details">
+                        <a href="#" className='username'>kourtney</a> Photos by @dina_litovsky | Canadian magician Shane Cobalt prepares to go on stage at the FISM World Championship of Magic...more
+                      </div>
+                      <a href="#" className="view__comments">View all 219 comments</a>
+                      <a href="#" className="created_at">2 HOURS AGO</a>
                     </div>
                   </div>
                 </div>
@@ -107,6 +112,11 @@ const Home = () => {
                     </div>
                     <div className="body__bottom--bottom">
                       <a href="#" className="bbb__like--link">98,825 likes</a>
+                      <div className="body__text-details">
+                        <a href="#" className='username'>kourtney</a> Photos by @dina_litovsky | Canadian magician Shane Cobalt prepares to go on stage at the FISM World Championship of Magic...more
+                      </div>
+                      <a href="#" className="view__comments">View all 219 comments</a>
+                      <a href="#" className="created_at">2 HOURS AGO</a>
                     </div>
                   </div>
                 </div>
@@ -149,6 +159,11 @@ const Home = () => {
                     </div>
                     <div className="body__bottom--bottom">
                       <a href="#" className="bbb__like--link">98,825 likes</a>
+                      <div className="body__text-details">
+                        <a href="#" className='username'>kourtney</a> Photos by @dina_litovsky | Canadian magician Shane Cobalt prepares to go on stage at the FISM World Championship of Magic...more
+                      </div>
+                      <a href="#" className="view__comments">View all 219 comments</a>
+                      <a href="#" className="created_at">2 HOURS AGO</a>
                     </div>
                   </div>
                 </div>

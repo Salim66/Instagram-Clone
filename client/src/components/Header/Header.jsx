@@ -5,9 +5,12 @@ import './Header.scss';
 
 const Header = () => {
 
+    // onFocus
     const handleSearchIconHide = () => {
         document.getElementById("search__icon").style.visibility = "hidden";
     }
+
+    // onBlur
     const handleSearchIconShow = () => {
         document.getElementById("search__icon").style.visibility = "visible";
     }

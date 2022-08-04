@@ -1,0 +1,290 @@
+.profile__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 108px;
+
+    .profile__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 1200px;
+
+        .profile__user--info {
+            display: flex;
+            width: 100%;
+            gap: 130px;
+            margin-left: 90px;
+            align-items: center;
+
+            .profile__user--image {
+                .user__image {
+                    width: 180px;
+                    height: 180px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+
+            .profile__text--info {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                
+
+                .profile__info--top {
+                    display: flex;
+                    align-items: flex-end;
+                    gap: 30px;
+
+                    .username {
+                        color: #414141;
+                        font-weight: 300;
+                        margin-bottom: 0px;
+                    }
+
+                    .edit__profile {
+                        text-decoration: none;
+                        padding: 6px 13px;
+                        border: 1px solid #DBDBDB;
+                        border-radius: 4px;
+                        color: #000;
+                        font-weight: 500;
+                        font-size: 16px;
+                    }
+
+                    .options {
+                        
+                        svg {
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
+                }
+
+                .profile__info--middle {
+                    display: flex;
+                    align-items: center;
+                    gap: 40px;
+                    font-size: 19px;
+                    color: #000;
+
+                    .total__post {
+                        margin-bottom: 0px;
+                    }
+
+                    .total__followers,
+                    .total__following {
+                        color: #000;
+                        text-decoration: none;
+                    }
+                }
+
+                .profile__info--bottom {
+                    .name {
+                        color: #000;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        .divider {
+            width: 100%;
+            margin-top: 40px;
+            
+
+            hr {
+                color: #999191d0;
+                margin-bottom: 0px;
+            }
+        }
+
+        .profile__navbar {
+            display: flex;
+
+            .profile__navbar--ul {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 0px;
+                width: 100%;
+                gap: 60px;
+
+                .profile__navbar--li {
+
+                    .profile__navbar--link {
+                        text-decoration: none;
+                        color: #918E9F;  
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;   
+                        padding-top: 18px;                 
+                    }
+
+                    .active {
+                        border-top: 2px solid #000;
+                        color: #000;
+                    }
+                }
+            }
+        }
+
+        .navbar__contain {
+            padding: 20px;
+
+            .gatting_started {
+                font-size: 17px;
+                font-weight: 500;
+            }
+
+            .add-phone__number-box {
+                width: 300px;
+                background-color: #FFF;
+                border: 2px solid #DBDBDB;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                text-align: center;
+                border-radius: 4px;
+                margin-top: 15px;
+                
+                .phone__icon {
+
+                    .icon {
+                        font-size: 45px;
+                        font-weight: 100;
+                        margin-top: 10px;
+                        margin-bottom: 30px;
+                    }
+                }
+
+                .add__phone--number {
+                    font-weight: 500;
+                }
+
+                .add__phone--text {
+                    color: #8E8E8E;
+                    margin-top: 5px;
+                }
+
+                .add__phone--link {
+                    margin-top: 10px;
+                    text-decoration: none;
+                    background-color: #0095f6;
+                    color: #FFF;
+                    width: 80%;
+                    line-height: 40px;
+                    border-radius: 4px;
+                    font-size: 18px;
+                }
+            }
+
+            .navbar__container-2nd {
+                display: flex;
+                margin-top: 25px;
+
+                .saved__left {
+                    color: #9C8E8E;
+                    font-size: 15px;
+                    width: 33.33%;
+                }
+
+                .saved__middle {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 33.33%;
+                    margin-top: 100px;
+
+                    .logo {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        border: 3px solid #000;
+                        line-height: 80px;
+                        text-align: center;
+
+                        svg{
+                            width: 35px;
+                            height: 35px;
+                            color: #000;
+                        }
+
+                    }
+
+                    .logo__title {
+                        margin-top: 25px;
+                        font-size: 35px;
+                        font-weight: 300;
+                        margin-bottom: 10px;
+                    }
+
+                }
+
+                .saved__right {
+                    width: 33.33%;
+                    display: flex;
+                    justify-content: end;
+                    .new__collection {
+                        text-decoration: none;
+                        font-size: 17px;
+                        
+
+                        &:hover {
+                            color: #2097F6;
+                        }
+                    }
+                }
+            }
+
+            .navbar__container-3nd {
+                display: flex;
+                margin-top: 70px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .logo {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 3px solid #000;
+                    line-height: 80px;
+                    text-align: center;
+
+                    svg{
+                        width: 35px;
+                        height: 35px;
+                        color: #000;
+                    }
+
+                }
+
+                .tagged__title {
+                    margin-top: 25px;
+                    font-size: 35px;
+                    font-weight: 300;
+                    margin-bottom: 10px;
+                }
+
+            }
+        }
+
+    }
+}
+
+.profile__navbar--link svg {
+    width: 15px;
+    height: 15px;
+}
+
+.navbar__contain {
+    display: none;
+}
+
+.is_active {
+    display: block;
+}

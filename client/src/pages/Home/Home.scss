@@ -345,6 +345,7 @@
 
                 .footer__bottom {
                     margin-top: 28px;
+                    
 
                     .footer__copyright--text {
                         color: #C7C7C7;
@@ -365,8 +366,12 @@
     width: 100%;
 }
 
-.bbl__link .svg__s {
+.bbl__link svg {
     width: 27px;
     height: 27px;
     color: #5C5C5C;
+
+    &:hover {
+        color: #8d8a8a;
+    }
 }

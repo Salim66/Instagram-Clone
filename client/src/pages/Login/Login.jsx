@@ -1,22 +1,87 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiFillFacebook } from 'react-icons/ai';
 import FooterAuth from '../../components/FooterAuth/FooterAuth';
 import './Login.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import swal from 'sweetalert';
+import cookie from 'js-cookie';
 
 const Login = () => {
+
+  // navigate
+  const navigate = useNavigate();
+
+  // Get start login form fields
+  const [input, setInput] = useState({
+    auth: '',
+    password: ''
+  });
+
+   // Create toast
+   const createToast = (msg) => {
+    toast.error(msg);
+  }
+
+  // handle input
+  const handleInput = (e) => {
+    setInput((prev) => ({...prev, [e.target.name] : e.target.value}));
+  }
+
+  // handle user login form
+  const handleUserLoginForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      
+      if( !input.auth || !input.password ){
+        createToast('All fields are required!');
+      }else {
+
+        await axios.post('http://localhost:5050/api/user/login', { email: input.auth, password: input.password })
+        .then( res => {
+          
+          cookie.set('token', res.data.token);
+          cookie.set('user', JSON.stringify(res.data.user));
+
+          navigate('/');
+
+        });
+
+      }
+
+    } catch (error) {
+      createToast('Wrong email and password!')
+    }
+
+  }
+
+
   return (
     <div className="login__container">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="login__wrapper">
         <a href="#" className="login__logo--link">
           <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="" className="login__logo" />
         </a>
-        <form action="#" className="login__form">
+        <form onSubmit={ handleUserLoginForm } className="login__form">
 
-            <input type="text" className="login__input" placeholder='Phone number, username, or email' />
-            <input type="password" className="login__input" placeholder='Password' />
+            <input type="text" name='auth' className="login__input" onChange={ handleInput } placeholder='Phone number, username, or email' value={ input.auth } />
+            <input type="password" name='password' className="login__input" onChange={ handleInput } placeholder='Password' value={ input.password } />
      
-            <button className="login__button">Log In</button>
+            <button type='submit' className="login__button">Log In</button>
         </form>
         <div className="divider">
           OR

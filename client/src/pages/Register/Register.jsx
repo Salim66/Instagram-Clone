@@ -7,6 +7,7 @@ import '../Login/Login.scss';
 import './Register.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const Register = () => {
 
@@ -29,20 +30,36 @@ const Register = () => {
   }
 
   // handle user register form
-  const handleUserRegisterForm = (e) => {
+  const handleUserRegisterForm = async (e) =>  {
     e.preventDefault();
     
     try {
       
       if( !input.email || !input.name || !input.username || !input.password ){
-        createToast("All fields are required!");
-        // swal ( "Oops" ,  "All fields are required!" ,  "error" )
+        // createToast("All fields are required!");
+        swal ( "Oops" ,  "All fields are required!" ,  "error" );
       }else {
-        alert('Done');
+        
+        await axios.post('http://localhost:5050/api/user/register', input)
+        .then(res => {
+          
+          setInput((prev) => ({
+            name: '',
+            email: '',
+            username: '',
+            password: ''
+          }))
+
+
+          swal ( "Success" ,  "You has been successfully registered. Please login!" ,  "success" );
+
+        });
+        
+
       }
 
     } catch (error) {
-      
+      console.log(error);
     }
 
   }

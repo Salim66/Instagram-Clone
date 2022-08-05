@@ -126,8 +126,10 @@ export const userLogin = async (req, res, next) => {
 
     try {
 
+
         // check user is has or not by email
         const login_user = await User.findOne({ email: req.body.email });
+
 
         // User is not found by email
         if(!login_user){
@@ -137,6 +139,7 @@ export const userLogin = async (req, res, next) => {
         // Check user password match or not
         const check_pass = await bcrypt.compare(req.body.password, login_user.password);
 
+
         // If Password Not Match
         if(!check_pass){
             return next(createError(404, 'Wrong Password'));
@@ -144,6 +147,7 @@ export const userLogin = async (req, res, next) => {
 
         // Create a token
         const token = jwt.sign({ id: login_user._id, isAdmin: login_user.isAdmin }, process.env.JWT_SECRET);
+
 
         // login user info
         const { password, isAdmin, ...login_info } = login_user._doc;
@@ -180,5 +184,5 @@ export const userRegister = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-
+    
 } 

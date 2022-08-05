@@ -6,14 +6,19 @@ import top1 from './top1.png';
 import top2 from './top2.png';
 import top3 from './top3.png';
 import top4 from './top4.png';
+import { useContext } from 'react';
 import post1 from './post1.jpg';
 import post2 from './post2.jpg';
 import post3 from './post3.jpg';
 import profileImage from './profile_image.png';
 import './Home.scss';
+import AuthContext from '../../context/AuthContext';
 
 const Home = () => {
 
+  const { token } = useContext(AuthContext);
+
+  console.log(token);
 
   return (
     <>

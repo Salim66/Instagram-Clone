@@ -16,8 +16,8 @@ const Login = () => {
             <input type="text" className="login__input" placeholder='Phone number, username, or email' />
             <input type="password" className="login__input" placeholder='Password' />
      
+            <button className="login__button">Log In</button>
         </form>
-        <button className="login__button">Log In</button>
         <div className="divider">
           OR
         </div>

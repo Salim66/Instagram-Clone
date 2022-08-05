@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillFacebook } from 'react-icons/ai';
 import FooterAuth from '../../components/FooterAuth/FooterAuth';
@@ -8,11 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import cookie from 'js-cookie';
+import AuthContext from '../../context/AuthContext.js';
 
 const Login = () => {
 
   // navigate
   const navigate = useNavigate();
+
+  const { dispatch } = useContext(AuthContext);
 
   // Get start login form fields
   const [input, setInput] = useState({
@@ -45,7 +48,7 @@ const Login = () => {
           
           cookie.set('token', res.data.token);
           cookie.set('user', JSON.stringify(res.data.user));
-
+          dispatch({ type: "LOGIN_USER", payload: res.data })
           navigate('/');
 
         });

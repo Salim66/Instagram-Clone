@@ -403,3 +403,13 @@
         color: #8d8a8a;
     }
 }
+
+.log__out {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+
+    a {
+        text-decoration: none;
+    }
+}

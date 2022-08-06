@@ -10,6 +10,13 @@ const AuthReducer = ( state, { type, payload } ) => {
                 user: payload.user,
             });
             break;
+        
+        case 'LOGOUT_USER': 
+            return {
+                token: '',
+                user: ''
+            }
+            break;
     
         default:
             return state;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from '../../components/Header/Header';
 import NotLogin from '../NotLogin/NotLogin';
 import { BsThreeDots, BsEmojiSmile } from "react-icons/bs";
@@ -6,19 +6,32 @@ import top1 from './top1.png';
 import top2 from './top2.png';
 import top3 from './top3.png';
 import top4 from './top4.png';
-import { useContext } from 'react';
 import post1 from './post1.jpg';
 import post2 from './post2.jpg';
 import post3 from './post3.jpg';
 import profileImage from './profile_image.png';
 import './Home.scss';
 import AuthContext from '../../context/AuthContext';
+import cookie from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
-  const { token } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  console.log(token);
+  // create handle user logout 
+  const handleUserLogout = (e) => {
+      e.preventDefault();
+
+      cookie.remove('token');
+      cookie.remove('user');
+
+      dispatch({ type: 'LOGOUT_USER' })
+
+      navigate('/login');
+
+  }
 
   return (
     <>
@@ -245,6 +258,9 @@ const Home = () => {
                   <div className="follow__user">
                     <a href="#" className="follow__user--link">Follow</a>
                   </div>
+              </div>
+              <div className="log__out">
+                <a href="#" onClick={ handleUserLogout }  className="logout">Logout</a>
               </div>
               <div className="body__footer">
                 <div className="footer__top">

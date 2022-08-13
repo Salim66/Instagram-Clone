@@ -4,17 +4,17 @@
 const AuthReducer = ( state, { type, payload } ) => {
 
     switch (type) {
-        case 'LOGIN_USER':
+        case 'LOGIN_USER_SUCCESS':
             return ({
-                token: payload.token,
-                user: payload.user,
+                isUserLoggedIn: true,
+                user: payload,
             });
             break;
         
         case 'LOGOUT_USER': 
             return {
-                token: '',
-                user: ''
+                isUserLoggedIn: false,
+                user: { }
             }
             break;
     

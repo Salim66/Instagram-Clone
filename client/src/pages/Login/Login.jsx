@@ -47,8 +47,7 @@ const Login = () => {
         .then( res => {
           
           cookie.set('token', res.data.token);
-          cookie.set('user', JSON.stringify(res.data.user));
-          dispatch({ type: "LOGIN_USER", payload: res.data })
+          dispatch({ type: "LOGIN_USER_SUCCESS", payload: res.data.user })
           navigate('/');
 
         });

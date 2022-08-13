@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // create handle user logout 
@@ -197,10 +197,10 @@ const Home = () => {
             <div className="body__right">
               <div className="body__right--top">
                 <div className="profile__info">
-                  <img className='profile__info--image' src={ profileImage } alt="" />
+                  <img className='profile__info--image' src={ user.photo ? '' : profileImage } alt="" />
                   <div className="profile__text">
-                    <h4 className="username">salimhasanriad</h4>
-                    <h4 className="name">Johnny Depp</h4>
+                    <h4 className="username">{ user.username }</h4>
+                    <h4 className="name">{ user.name }</h4>
                   </div>
                 </div>
                 <div className="switch__account">

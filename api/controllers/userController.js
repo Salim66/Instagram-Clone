@@ -186,3 +186,47 @@ export const userRegister = async (req, res, next) => {
     }
     
 } 
+
+
+/**
+ * @access public
+ * @routes /api/user/me
+ * @method GET 
+ */
+export const getLoggedInUser = async (req, res, next) => {
+    
+    try {
+        
+        // get token
+        let bearer_token = req.headers.authorization;
+
+        // If token is not exists
+        if(!bearer_token){
+            next(createError(404, 'Token not found!'));
+        }
+
+        let token = '';
+        if(bearer_token){
+            token = bearer_token.split(' ')[1];
+
+            // get token user
+            const logged_in_user = jwt.verify(token, process.env.JWT_SECRET);
+
+            // user check
+            if( !logged_in_user ){
+                next(createError(400, 'Invalid Token'));
+            }
+
+            // user check
+            if( logged_in_user ){
+                const user = await User.findById(logged_in_user.id);
+                res.status(200).json(user);
+            }
+
+        }
+
+    } catch (error) {
+        next(error);
+    }
+
+}

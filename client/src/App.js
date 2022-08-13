@@ -11,11 +11,16 @@ import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 import axios from 'axios';
 import AuthContext from './context/AuthContext';
+import LoadingBar from 'react-top-loading-bar';
+import LoaderContext from './context/LoaderContext';
 
 function App() {
 
-  // call context api
+  // get atuhContext api
   const { dispatch } = useContext(AuthContext);
+
+  // get loaderContext
+  const { loaderState, loaderDispatch } = useContext(LoaderContext);
 
   // get tokeh
   const token = Cookies.get('token');
@@ -44,13 +49,23 @@ function App() {
   }, [token] );
 
 
+
   return (
-    <Routes>
-      <Route path="/login" element={ <AuthRedirectUser><Login /></AuthRedirectUser> } />
-      <Route path="/register" element={ <AuthRedirectUser><Register /></AuthRedirectUser> } />
-      <Route path="/profile/:id" element={ <AuthenticateUser><Profile /></AuthenticateUser> } />
-      <Route path="/" element={ <AuthenticateUser><Home /></AuthenticateUser> } />
-    </Routes>
+    <>
+      <LoadingBar
+        color='#f11946'
+        progress={ loaderState }
+        onLoaderFinished={() => loaderDispatch({ type: "LOADER_END" }) }
+      />
+
+      <Routes>
+        <Route path="/login" element={ <AuthRedirectUser><Login /></AuthRedirectUser> } />
+        <Route path="/register" element={ <AuthRedirectUser><Register /></AuthRedirectUser> } />
+        <Route path="/profile/:id" element={ <AuthenticateUser><Profile /></AuthenticateUser> } />
+        <Route path="/" element={ <AuthenticateUser><Home /></AuthenticateUser> } />
+      </Routes>
+    </>
+    
   );
 }
 

@@ -14,11 +14,16 @@ import './Home.scss';
 import AuthContext from '../../context/AuthContext';
 import cookie from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import LoaderContext from '../../context/LoaderContext';
 
 const Home = () => {
 
+  // get AuthContext
   const { dispatch, user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // get LoaderContext
+  const { loaderDispatch } = useContext(LoaderContext);
 
   // create handle user logout 
   const handleUserLogout = (e) => {
@@ -30,6 +35,8 @@ const Home = () => {
       dispatch({ type: 'LOGOUT_USER' })
 
       navigate('/login');
+
+      loaderDispatch({ type: "LOADER_START" });
 
   }
 
@@ -197,7 +204,7 @@ const Home = () => {
             <div className="body__right">
               <div className="body__right--top">
                 <div className="profile__info">
-                  <img className='profile__info--image' src={ user.photo ? '' : profileImage } alt="" />
+                  <img className='profile__info--image' src={ user.photo ? user.photo : profileImage } alt="" />
                   <div className="profile__text">
                     <h4 className="username">{ user.username }</h4>
                     <h4 className="name">{ user.name }</h4>

@@ -9,13 +9,18 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import cookie from 'js-cookie';
 import AuthContext from '../../context/AuthContext.js';
+import LoaderContext from '../../context/LoaderContext';
 
 const Login = () => {
 
   // navigate
   const navigate = useNavigate();
 
+  // get AuthContext
   const { dispatch } = useContext(AuthContext);
+
+  // get LoaderContext
+  const { loaderDispatch } = useContext(LoaderContext);
 
   // Get start login form fields
   const [input, setInput] = useState({
@@ -49,6 +54,8 @@ const Login = () => {
           cookie.set('token', res.data.token);
           dispatch({ type: "LOGIN_USER_SUCCESS", payload: res.data.user })
           navigate('/');
+          loaderDispatch({ type: "LOADER_START" });
+
 
         });
 

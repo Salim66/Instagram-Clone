@@ -4,6 +4,7 @@ import User from '../models/User.js';
 import createError from './errorController.js';
 import jwt from 'jsonwebtoken';
 import { SendEmail } from '../utility/SendEmail.js';
+import { SendSMS } from '../utility/SendSMS.js';
 
 
 /**
@@ -181,6 +182,7 @@ export const userRegister = async (req, res, next) => {
         
         const user = await User.create({ ...req.body, password: hash_pass });
         SendEmail(user.email, 'Instagram', `${user.name} Welcome To Our Instagram.`);
+        SendSMS();
         res.status(200).json(user);
 
     } catch (error) {

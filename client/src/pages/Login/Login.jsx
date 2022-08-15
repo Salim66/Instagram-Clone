@@ -3,13 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiFillFacebook } from 'react-icons/ai';
 import FooterAuth from '../../components/FooterAuth/FooterAuth';
 import './Login.scss';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import cookie from 'js-cookie';
 import AuthContext from '../../context/AuthContext.js';
 import LoaderContext from '../../context/LoaderContext';
+import { createToast } from '../../utility/toast';
 
 const Login = () => {
 
@@ -27,11 +26,6 @@ const Login = () => {
     auth: '',
     password: ''
   });
-
-   // Create toast
-   const createToast = (msg) => {
-    toast.error(msg);
-  }
 
   // handle input
   const handleInput = (e) => {
@@ -51,10 +45,15 @@ const Login = () => {
         await axios.post('http://localhost:5050/api/user/login', { email: input.auth, password: input.password })
         .then( res => {
           
-          cookie.set('token', res.data.token);
-          dispatch({ type: "LOGIN_USER_SUCCESS", payload: res.data.user })
-          navigate('/');
-          loaderDispatch({ type: "LOADER_START" });
+          if(res.data.user.isVerified){
+            cookie.set('token', res.data.token);
+            dispatch({ type: "LOGIN_USER_SUCCESS", payload: res.data.user })
+            navigate('/');
+            loaderDispatch({ type: "LOADER_START" });
+          }else {
+            createToast('Please verify your account.');
+          }
+          
 
 
         });
@@ -70,17 +69,6 @@ const Login = () => {
 
   return (
     <div className="login__container">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="login__wrapper">
         <a href="#" className="login__logo--link">
           <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="" className="login__logo" />

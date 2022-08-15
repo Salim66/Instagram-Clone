@@ -13,6 +13,9 @@ import axios from 'axios';
 import AuthContext from './context/AuthContext';
 import LoadingBar from 'react-top-loading-bar';
 import LoaderContext from './context/LoaderContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { createToast } from './utility/toast';
 
 function App() {
 
@@ -36,7 +39,14 @@ function App() {
         }
       })
       .then( res => {
+
+        if(res.data.isVerified){
           dispatch({ type: "LOGIN_USER_SUCCESS", payload: res.data })
+        }else {
+          createToast("Please verify your account.");
+          Cookies.remove('token');
+        }
+
       } )
       .catch( error => {
           dispatch({ type: "LOGOUT_USER" });
@@ -58,10 +68,22 @@ function App() {
         onLoaderFinished={() => loaderDispatch({ type: "LOADER_END" }) }
       />
 
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <Routes>
         <Route path="/login" element={ <AuthRedirectUser><Login /></AuthRedirectUser> } />
         <Route path="/register" element={ <AuthRedirectUser><Register /></AuthRedirectUser> } />
-        <Route path="/profile/:id" element={ <AuthenticateUser><Profile /></AuthenticateUser> } />
+        <Route path="/profile/:id" element={ <Profile /> } />
         <Route path="/" element={ <AuthenticateUser><Home /></AuthenticateUser> } />
       </Routes>
     </>

@@ -5,8 +5,6 @@ import FooterAuth from '../../components/FooterAuth/FooterAuth';
 import swal from 'sweetalert';
 import '../Login/Login.scss';
 import './Register.scss';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 const Register = () => {
@@ -18,11 +16,6 @@ const Register = () => {
     username: '',
     password: '',
   });
-
-  // Create toast
-  const createToast = (msg) => {
-    toast.error(msg);
-  }
 
   //handle Input
   const handleInput = (e) => {
@@ -66,17 +59,6 @@ const Register = () => {
 
   return (
     <div className="login__container auth__container--register">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="login__wrapper">
         <a href="#" className="login__logo--link">
           <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="" className="login__logo" />

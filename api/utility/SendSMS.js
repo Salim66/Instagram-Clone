@@ -1,31 +1,13 @@
-import Vonage from '@vonage/server-sdk';
 
-const vonage = new Vonage({
-  apiKey: "3d561d85",
-  apiSecret: "9ELwplIX0FeNYKjX"
-})
+import axios from 'axios';
 
 
 // Create send SMS
-export const SendSMS = () => {
+export const SendSMS = async (number, message) => {
 
     try {
         
-        const from = "Vonage APIs"
-        const to = "8801773980593"
-        const text = 'Welcome to our Instagram'
-
-        vonage.message.sendSms(from, to, text, (err, responseData) => {
-            if (err) {
-                console.log(err);
-            } else {
-                if(responseData.messages[0]['status'] === "0") {
-                    console.log("Message sent successfully.");
-                } else {
-                    console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-                }
-            }
-        })
+        await axios.get(`https://bulksmsbd.net/api/smsapi?api_key=zYdmoVJeZ0JPGyAsHk4z&type=text&number=${ number }&senderid=03590002777&message=${ message }`);
 
     } catch (error) {
         console.log(error);

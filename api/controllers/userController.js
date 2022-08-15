@@ -181,8 +181,8 @@ export const userRegister = async (req, res, next) => {
     try {
         
         const user = await User.create({ ...req.body, password: hash_pass });
-        SendEmail(user.email, 'Instagram', `${user.name} Welcome To Our Instagram.`);
-        SendSMS();
+        await SendEmail(user.email, 'Instagram', `${user.name} Welcome To Our Instagram.`);
+        await SendSMS('01773980593', `Hi ${ user.name } welcome to our Instagram.`);
         res.status(200).json(user);
 
     } catch (error) {

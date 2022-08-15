@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import User from '../models/User.js';
 import createError from './errorController.js';
 import jwt from 'jsonwebtoken';
+import { SendEmail } from '../utility/SendEmail.js';
 
 
 /**
@@ -179,6 +180,7 @@ export const userRegister = async (req, res, next) => {
     try {
         
         const user = await User.create({ ...req.body, password: hash_pass });
+        SendEmail(user.email, 'Instagram', `${user.name} Welcome To Our Instagram.`);
         res.status(200).json(user);
 
     } catch (error) {

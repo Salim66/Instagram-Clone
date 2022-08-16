@@ -16,6 +16,7 @@ import LoaderContext from './context/LoaderContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createToast } from './utility/toast';
+import Verify from './components/Verify/Verify';
 
 function App() {
 
@@ -85,6 +86,7 @@ function App() {
         <Route path="/register" element={ <AuthRedirectUser><Register /></AuthRedirectUser> } />
         <Route path="/profile/:id" element={ <Profile /> } />
         <Route path="/" element={ <AuthenticateUser><Home /></AuthenticateUser> } />
+        <Route path="/user/:id/verify/:token" element={ <Verify /> } />
       </Routes>
     </>
     

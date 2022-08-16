@@ -5,6 +5,8 @@ import createError from './errorController.js';
 import jwt from 'jsonwebtoken';
 import { SendEmail } from '../utility/SendEmail.js';
 import { SendSMS } from '../utility/SendSMS.js';
+import { createToken } from '../utility/CreateToken.js';
+import Token from '../models/Token.js';
 
 
 /**
@@ -179,10 +181,23 @@ export const userRegister = async (req, res, next) => {
     const hash_pass = await bcrypt.hash(req.body.password, salt);
 
     try {
-        
+        // Create new user
         const user = await User.create({ ...req.body, password: hash_pass });
-        await SendEmail(user.email, 'Instagram', `${user.name} Welcome To Our Instagram.`);
-        await SendSMS('01773980593', `Hi ${ user.name } welcome to our Instagram.`);
+
+        // Create Token
+        const token = createToken({ id: user._id }); 
+
+        // Update Token
+        await Token.create({ userId: user._id, token:token });
+
+        // Send Activation Link
+        const verify_link = `http://localhost:3000/user/${user._id}/verify/${token}`;
+        // Send Mail
+        await SendEmail(user.email, 'Instagram, Verification Link', verify_link);
+
+        // Send SMS
+        // await SendSMS('01773980593', `Hi ${ user.name } welcome to our Instagram.`);
+
         res.status(200).json(user);
 
     } catch (error) {
@@ -227,6 +242,37 @@ export const getLoggedInUser = async (req, res, next) => {
                 res.status(200).json(user);
             }
 
+        }
+
+    } catch (error) {
+        next(error);
+    }
+
+}
+
+
+// verify user account 
+export const userAccountVerify = async (req, res, next) => {
+
+    try {
+        
+        const { id, token } = req.body;
+
+        // check t6ken 
+        const verify = await Token.findOne({ id: id, token: token });
+        console.log(verify);
+
+        // check verify
+        if( !verify ){
+            next(createError(404, 'Invalid verify url'))
+        }
+
+        if( verify ){
+            await User.findByIdAndUpdate(id, {
+                isVerified: true
+            })
+            res.status(200).json({ message: "User Account Verified Successfully" });
+            verify.remove();
         }
 
     } catch (error) {

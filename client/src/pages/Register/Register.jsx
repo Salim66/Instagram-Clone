@@ -1,5 +1,5 @@
 import React,  { useState }  from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiFillFacebook } from 'react-icons/ai';
 import FooterAuth from '../../components/FooterAuth/FooterAuth';
 import swal from 'sweetalert';
@@ -8,6 +8,8 @@ import './Register.scss';
 import axios from 'axios';
 
 const Register = () => {
+
+  const navigate = useNavigate();
 
   // Start for form fields
   const [input, setInput] = useState({
@@ -35,7 +37,7 @@ const Register = () => {
         
         await axios.post('http://localhost:5050/api/user/register', input)
         .then(res => {
-          
+
           setInput((prev) => ({
             name: '',
             email: '',
@@ -45,6 +47,8 @@ const Register = () => {
 
 
           swal ( "Success" ,  "You has been successfully registered. Please login!" ,  "success" );
+
+          navigate(`/verify/${res.data._id}`)
 
         });
         

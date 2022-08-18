@@ -185,27 +185,25 @@ export const userRegister = async (req, res, next) => {
         // Create new user
         const user = await User.create({ ...req.body, password: hash_pass });
 
-        // // Create Token
-        // const token = createToken({ id: user._id }); 
+        // Create Token
+        const token = createToken({ id: user._id }); 
         
-        // // Update Token
-        // await Token.create({ userId: user._id, token:token });
+        // Update Token
+        await Token.create({ userId: user._id, token:token });
 
-        // // Send Activation Link
-        // const verify_link = `http://localhost:3000/user/${user._id}/verify/${token}`;
-        // // Send Mail
-        // await SendEmail(user.email, 'Instagram, Verification Link', verify_link);
+        // Send Activation Link
+        const verify_link = `http://localhost:3000/user/${user._id}/verify/${token}`;
+        // Send Mail
+        await SendEmail(user.email, 'Instagram, Verification Link', verify_link);
 
-        // Create Random Number 6 Digits
-        let token_code = Math.floor(Math.random()*900000) + 100000;
+        // // Create Random Number 6 Digits
+        // let token_code = Math.floor(Math.random()*900000) + 100000;
 
-        // // Update Token
-        await Token.create({ userId: user._id, token:token_code });
-        
-        // SendEmail(user.email, 'Instagram, Verification Link', `Verify Code : ${token_code}`);
+        // // // Update Token
+        // await Token.create({ userId: user._id, token:token_code });
 
-        // Send SMS
-        await SendSMS('01773980593', `Your Activation Code: ${token_code}`);
+        // // Send SMS
+        // await SendSMS('01773980593', `Your Activation Code: ${token_code}`);
 
         res.status(200).json(user);
 
@@ -267,12 +265,12 @@ export const userAccountVerify = async (req, res, next) => {
 
     try {
         
-        // const { id, token } = req.body;
-        const { userId, code } = req.body;
+        const { id, token } = req.body;
+        // const { userId, code } = req.body;
 
         // check token 
-        // const verify = await Token.findOne({ id: id, token: token });
-        const verify = await Token.findOne({ id: userId, token: code });
+        const verify = await Token.findOne({ userId: id, token: token });
+        // const verify = await Token.findOne({ id: userId, token: code });
 
 
         // check verify
@@ -281,7 +279,7 @@ export const userAccountVerify = async (req, res, next) => {
         }
 
         if( verify ){
-            await User.findByIdAndUpdate(userId, {
+            await User.findByIdAndUpdate(id, {
                 isVerified: true
             })
             res.status(200).json({ message: "User Account Verified Successfully" });

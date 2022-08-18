@@ -10,71 +10,75 @@ const Verify = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const [input, setInput] = useState({
-        userId: params.id,
-        code: '',
-    });
+    // // Form OTP 
+    // const [input, setInput] = useState({
+    //     userId: params.id,
+    //     code: '',
+    // });
 
-    // Handle Input
-    const handleInput = (e) => {
-        setInput((prev) => ({ ...prev, [e.target.name] : e.target.value }))
-    }
+    // // Handle Input
+    // const handleInput = (e) => {
+    //     setInput((prev) => ({ ...prev, [e.target.name] : e.target.value }))
+    // }
 
-    // Handle verify account form
-    const handleVerifyAccountForm = (e) => {
-        e.preventDefault();
+    // // Handle verify account form
+    // const handleVerifyAccountForm = (e) => {
+    //     e.preventDefault();
 
-        try {
+    //     try {
             
-            if( !input.userId || !input.code ){
-                createToast("Please insert your 6 digit OTP Code!");
-            }else {
+    //         if( !input.userId || !input.code ){
+    //             createToast("Please insert your 6 digit OTP Code!");
+    //         }else {
 
-                axios.post('http://localhost:5050/api/user/verify', input)
-                .then( res => {
-                    console.log(res.data);
-                    createToast("Account activated successfully");
-                    navigate('/login');
+    //             axios.post('http://localhost:5050/api/user/verify', input)
+    //             .then( res => {
+    //                 console.log(res.data);
+    //                 createToast("Account activated successfully");
+    //                 navigate('/login');
 
-                })
-                .catch( error => {
+    //             })
+    //             .catch( error => {
 
-                    createToast("Account activated failed");
-                    navigate('/login');
+    //                 createToast("Account activated failed");
+    //                 navigate('/login');
 
-                });
+    //             });
 
-            }
+    //         }
 
-        } catch (error) {
-            console.log(error);
-        }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
 
-    }
+    // }
     
 
     // for send mail verification
-    // useEffect( () => {
+    
 
-    //     axios.post('http://localhost:5050/api/user/verify', params)
-    //     .then( res => {
+    useEffect( () => {
+
+        axios.post('http://localhost:5050/api/user/verify', params)
+        .then( res => {
             
-    //         createToast("Account activated successfully");
-    //         navigate('/login');
+            createToast("Account activated successfully");
+            navigate('/login');
 
-    //     })
-    //     .catch( error => {
+        })
+        .catch( error => {
 
-    //         createToast("Account activated failed");
-    //         navigate('/login');
+            createToast("Account activated failed");
+            navigate('/login');
 
-    //     });
+        });
 
-    // });
+    });
 
   return (
     <>
-        <Container className="my-5">
+        <h3>Verify By Email</h3>
+        {/* <Container className="my-5">
             <Row className="justify-content-center">
                 <Col md={ 4 }>
                     <Card>
@@ -89,7 +93,7 @@ const Verify = () => {
                     </Card>
                 </Col>
             </Row>
-        </Container>
+        </Container> */}
     </>
   )
 };

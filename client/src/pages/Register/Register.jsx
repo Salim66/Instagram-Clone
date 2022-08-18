@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const Register = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Start for form fields
   const [input, setInput] = useState({
@@ -48,7 +48,7 @@ const Register = () => {
 
           swal ( "Success" ,  "You has been successfully registered. Please login!" ,  "success" );
 
-          navigate(`/verify/${res.data._id}`)
+          // navigate(`/verify/${res.data._id}`)
 
         });
         

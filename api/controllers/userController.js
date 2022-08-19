@@ -259,8 +259,11 @@ export const getLoggedInUser = async (req, res, next) => {
 
 }
 
-
-// verify user account 
+/**
+ * @access public
+ * @routes /api/user/verify
+ * @method GET 
+ */
 export const userAccountVerify = async (req, res, next) => {
 
     try {
@@ -285,6 +288,55 @@ export const userAccountVerify = async (req, res, next) => {
             res.status(200).json({ message: "User Account Verified Successfully" });
             verify.remove();
         }
+
+    } catch (error) {
+        next(error);
+    }
+
+}
+
+
+/**
+ * @access public
+ * @routes /api/user/recovery-password
+ */
+export const userRecoveryPassword = async (req, res, next) => {
+
+    try {
+        
+        // spread body data
+        const { email } = req.body;
+
+        // get recovery user
+        const recovery_user = await User.findOne({ email });
+
+        // check user exists
+        if( !recovery_user ){
+            res.status(404).json({
+                "message" : "Email doesn't exits!"
+            });
+        }
+
+        if( recovery_user ){
+            const token = createToken({ id: recovery_user._id });
+            const recovery_url = `http://localhost:3000/recovery-password/${token}`;
+
+            await Token.create({
+                userId: recovery_user._id,
+                token: token
+            });
+
+            SendEmail( recovery_user.email, 'Password Reset', recovery_url );
+
+            res.status(200).json({
+                "message": "Password recovery link send."
+            });
+
+        }
+
+
+        
+        
 
     } catch (error) {
         next(error);

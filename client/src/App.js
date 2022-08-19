@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createToast } from './utility/toast';
 import Verify from './components/Verify/Verify';
+import PasswordRevovery from './pages/PasswordRecovery/PasswordRevovery';
 
 function App() {
 
@@ -87,7 +88,9 @@ function App() {
         <Route path="/profile/:id" element={ <Profile /> } />
         <Route path="/" element={ <AuthenticateUser><Home /></AuthenticateUser> } />
         <Route path="/user/:id/verify/:token" element={ <Verify /> } />
+        {/* Send OTP Page */}
         {/* <Route path="/verify/:id" element={ <Verify /> } /> */}
+        <Route path="/recovery-password" element={ <PasswordRevovery /> } />
       </Routes>
     </>
     

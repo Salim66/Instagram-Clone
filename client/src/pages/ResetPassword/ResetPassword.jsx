@@ -1,10 +1,65 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import { VscHome } from "react-icons/vsc";
 import { FaRegUser } from "react-icons/fa";
 import Logo from './reset_logo.png';
 import './ResetPassword.scss';
+import { useState } from 'react';
+import { createToast } from '../../utility/toast';
 
 const ResetPassword = () => {
+
+  // get token
+  const { token } = useParams();
+  const navigate = useNavigate();
+
+  // useState
+  const [input, setInput] = useState({
+    new_password: '',
+    new_password_confirmation: ''
+  })
+
+
+  // hanlde input
+  const handleInput = (e) => {
+    setInput((prev) => ({ ...prev, [e.target.name] : e.target.value }))
+  }
+
+  // handle form submit
+  const handleResetForm = async (e) => {
+    e.preventDefault();
+
+    if( !input.new_password ){
+      createToast("Please insert a password");
+    }else if( input.new_password !== input.new_password_confirmation ){
+      createToast("Password and confirm password doesn't match!");
+    }else {
+
+      await axios.post('http://localhost:5050/api/user/reset-password', {
+        password: input.new_password,
+        token
+      })
+      .then( res => {
+
+        setInput({
+          new_password: '',
+          new_password_confirmation: ''
+        });
+
+        createToast('Password changed successfully');
+        navigate('/login');
+
+      })
+      .catch( error => {
+        createToast('Token expired, please try again');
+      } );
+
+    }
+
+  }
+
+
   return (
     <>
       <div className="reset__password-contianer">
@@ -29,14 +84,14 @@ const ResetPassword = () => {
                 <p className="alert__red">Create a password at least 6 characters long.</p>
               </div>
               <div className="divider"></div>
-              <form action="#" className="reset__form">
+              <form onSubmit={ handleResetForm } className="reset__form">
                 <div className="my-3">
                   <label htmlFor="">New password:</label>
-                  <input type="password" name='new_password' />
+                  <input type="password" name='new_password' onChange={ handleInput } value={ input.new_password } />
                 </div>
                 <div className="my-3">
                   <label htmlFor="">New password confirmation:</label>
-                  <input type="password" name='new_password_confirmation' />
+                  <input type="password" name='new_password_confirmation' onChange={ handleInput } value={ input.new_password_confirmation } />
                 </div>
                 <div className="my-3">
                  <button type='submit' className="reset__button">Reset Password</button>

@@ -299,6 +299,7 @@ export const userAccountVerify = async (req, res, next) => {
 /**
  * @access public
  * @routes /api/user/recovery-password
+ * @method POST
  */
 export const userRecoveryPassword = async (req, res, next) => {
 
@@ -318,13 +319,8 @@ export const userRecoveryPassword = async (req, res, next) => {
         }
 
         if( recovery_user ){
-            const token = createToken({ id: recovery_user._id });
+            const token = createToken({ id: recovery_user._id }, '1m');
             const recovery_url = `http://localhost:3000/recovery-password/${token}`;
-
-            await Token.create({
-                userId: recovery_user._id,
-                token: token
-            });
 
             SendEmail( recovery_user.email, 'Password Reset', recovery_url );
 
@@ -335,8 +331,42 @@ export const userRecoveryPassword = async (req, res, next) => {
         }
 
 
+    } catch (error) {
+        next(error);
+    }
+
+}
+
+/**
+ * @access private
+ * @routes /api/user/reset-password
+ * @method POST 
+ */
+export const resetPassword = async (req, res, next) => {
+
+    try {
+        // get form token
+        const { token, password } = req.body;
+
+        // make hash password
+        const salt = await bcrypt.genSalt(10);
+        const hash_pass = await bcrypt.hash(req.body.password, salt);
+
+        // get id from token
+        let { id } = jwt.verify(token, process.env.JWT_SECRET);
         
-        
+        // check user id has 
+        if( id ){
+
+           const user_details = await User.findByIdAndUpdate(id, {
+                password: hash_pass
+           })
+
+            res.send("Password Changed Successfully!");
+
+        }else {
+            next(createError(401, 'Token Not Match'));
+        }
 
     } catch (error) {
         next(error);

@@ -64,7 +64,7 @@ const PasswordRevovery = () => {
             </div>
         </header>
 
-        <div className="login__container">
+        <div className="recovery__container">
             <div className="login__wrapper">
                 <a href="#" className="login__logo--link">
                 <img src={ recovery } alt="" className="login__logo" />

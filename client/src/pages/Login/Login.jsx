@@ -84,7 +84,7 @@ const Login = () => {
           OR
         </div>
         <a href="#" className="login__with-facebook"><AiFillFacebook className='fb-icon' /> Log in with facebook</a>
-        <a href="#" className="forgot__password">Forgot password?</a>
+        <Link to="/recovery-password" className="forgot__password">Forgot password?</Link>
       </div>
       <div className="login__wrapper login__wrapper--signup">
         <p className="signup__text">Don't have an account? <Link to="/register" className="signup__link">Sign up</Link></p>
